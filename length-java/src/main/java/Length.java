@@ -1,6 +1,16 @@
 import constant.LengthUnitEnum;
 import constant.LengthUnitEnum;
 
+
+/**
+ * 步骤：
+ * 1、重新命名表意不明的变量名、函数名
+ * 2、提取到处出现的字符串常量到一个常量类或枚举类或内部类等去管理
+ * 3、替换参数为新类型的参数，需要增加一个同样代码但函数名、参数增加(用于替代原来参数，原来的参数暂时不删除用于平滑过渡)的方法，确保替换完成后删除原来旧函数将新函数名修改为旧函数名
+ * 4、提炼重复的代码段：消除重复的对象创建代码
+ *
+ *
+ */
 public class Length {
     private final double value;
     private final LengthUnitEnum unit;
