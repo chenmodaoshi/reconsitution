@@ -1,3 +1,5 @@
+import constant.LengthUnit;
+
 public class Length {
     private final double value;
     private final String unit;
@@ -9,26 +11,26 @@ public class Length {
 
     public Length as(String u) {
         Length len = this;
-        if (this.unit.equals("f")) {
-            if (u.equals("yard")) {
+        if (this.unit.equals(LengthUnit.FOOT)) {
+            if (u.equals(LengthUnit.YARD)) {
                 len = new Length(this.value / 3, u);
-            } else if (u.equals("inch")) {
+            } else if (u.equals(LengthUnit.INCH)) {
                 len = new Length(this.value * 12, u);
             }
         }
 
-        if (this.unit.equals("yard")) {
-            if (u.equals("inch")) {
+        if (this.unit.equals(LengthUnit.YARD)) {
+            if (u.equals(LengthUnit.INCH)) {
                 len = new Length(this.value * 36, u);
-            } else if (u.equals("f")){
+            } else if (u.equals(LengthUnit.FOOT)){
                 len = new Length(this.value * 3, u);
             }
         }
 
-        if (this.unit.equals("inch")) {
-            if (u.equals("f")) {
+        if (this.unit.equals(LengthUnit.INCH)) {
+            if (u.equals(LengthUnit.FOOT)) {
                 len = new Length(this.value / 12, u);
-            } else if (u.equals("yard")) {
+            } else if (u.equals(LengthUnit.YARD)) {
                 len = new Length(this.value / 36, u);
             }
         }
