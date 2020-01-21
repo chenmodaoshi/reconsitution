@@ -23,7 +23,7 @@ public class Length {
         this.unit = uinnt;
     }
 
-    public Length temp_as(LengthUnitEnum u) {
+    public Length temp_convertUnit(LengthUnitEnum u) {
         Length len = this;
         if (this.unit.equals(LengthUnitEnum.FOOT)) {
             if (u.equals(LengthUnitEnum.YARD)) {
@@ -52,7 +52,7 @@ public class Length {
         return len;
     }
 
-    public Length as(LengthUnitEnum aimUnit)throws  Exception {
+    public Length convertUnit(LengthUnitEnum aimUnit)throws  Exception {
         //以卫语句取代嵌套条件式：根据当前单位和目标单位进行转换
         Length len = this;
 
@@ -69,7 +69,7 @@ public class Length {
                 LenghtUnitConverter footUnitConverter= LenghtUnitConverterFactory.buildLenghtUnitConverter(LengthUnitEnum.FOOT);
                 len=footUnitConverter.converter(this,aimUnit);
                 break;
-            //default:throw new IllegalArgumentException("原长度单位不存在") ;
+            default://什么都不做;
         }
 
         return len;
