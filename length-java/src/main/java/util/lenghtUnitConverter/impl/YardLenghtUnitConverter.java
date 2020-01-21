@@ -11,11 +11,26 @@ import util.util.lenghtUnitConverter.LenghtUnitConverter;
  */
 public class YardLenghtUnitConverter extends LenghtUnitConverter {
     @Override
-    protected void checkOriginUnit(LengthUnitEnum originUnit) {
-
+    protected void checkOriginUnit(LengthUnitEnum originUnit)  throws  Exception{
+        if(!(LengthUnitEnum.YARD==originUnit)){
+            throw new Exception("长度单位转换器与传参不匹配！！！");
+        }
     }
+
+    /**
+     * 使用卫语句进行转制
+     * @param val
+     * @param amiUnit
+     * @return
+     */
     @Override
-    protected Length doConverter(Length val) {
-        return null;
+    protected Length doConverter(Length val,LengthUnitEnum amiUnit) {
+        if (amiUnit==LengthUnitEnum.INCH) {
+            return new Length(val.getVal() * 36, LengthUnitEnum.INCH);
+        }
+            if (amiUnit==LengthUnitEnum.FOOT) {
+                return new Length(val.getVal() * 3, LengthUnitEnum.FOOT);
+            }
+        return val;
     }
 }

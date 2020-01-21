@@ -1,6 +1,8 @@
 package service;
 
 import constant.LengthUnitEnum;
+import util.LenghtUnitConverterFactory;
+import util.util.lenghtUnitConverter.LenghtUnitConverter;
 
 
 /**
@@ -21,7 +23,7 @@ public class Length {
         this.unit = uinnt;
     }
 
-    public Length as(LengthUnitEnum u) {
+    public Length temp_as(LengthUnitEnum u) {
         Length len = this;
         if (this.unit.equals(LengthUnitEnum.FOOT)) {
             if (u.equals(LengthUnitEnum.YARD)) {
@@ -50,45 +52,24 @@ public class Length {
         return len;
     }
 
-    public Length temp_as(LengthUnitEnum u) {
+    public Length as(LengthUnitEnum aimUnit)throws  Exception {
         //以卫语句取代嵌套条件式：根据当前单位和目标单位进行转换
         Length len = this;
 
         switch(this.unit){
             case INCH:
-
+                LenghtUnitConverter inchUnitConverter= LenghtUnitConverterFactory.buildLenghtUnitConverter(LengthUnitEnum.INCH);
+                len=inchUnitConverter.converter(this,aimUnit);
                 break;
-            //case YARD:
-                //break;
-            //case FOOT:
-                //break;
+            case YARD:
+                LenghtUnitConverter yardUnitConverter= LenghtUnitConverterFactory.buildLenghtUnitConverter(LengthUnitEnum.YARD);
+                len=yardUnitConverter.converter(this,aimUnit);
+                break;
+            case FOOT:
+                LenghtUnitConverter footUnitConverter= LenghtUnitConverterFactory.buildLenghtUnitConverter(LengthUnitEnum.FOOT);
+                len=footUnitConverter.converter(this,aimUnit);
+                break;
             //default:throw new IllegalArgumentException("原长度单位不存在") ;
-        }
-
-
-
-        if (this.unit.equals(LengthUnitEnum.FOOT)) {
-            if (u.equals(LengthUnitEnum.YARD)) {
-                len = new Length(this.value / 3, u);
-            } else if (u.equals(LengthUnitEnum.INCH)) {
-                len = new Length(this.value * 12, u);
-            }
-        }
-
-        if (this.unit.equals(LengthUnitEnum.YARD)) {
-            if (u.equals(LengthUnitEnum.INCH)) {
-                len = new Length(this.value * 36, u);
-            } else if (u.equals(LengthUnitEnum.FOOT)){
-                len = new Length(this.value * 3, u);
-            }
-        }
-
-        if (this.unit.equals(LengthUnitEnum.INCH)) {
-            if (u.equals(LengthUnitEnum.FOOT)) {
-                len = new Length(this.value / 12, u);
-            } else if (u.equals(LengthUnitEnum.YARD)) {
-                len = new Length(this.value / 36, u);
-            }
         }
 
         return len;

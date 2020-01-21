@@ -14,7 +14,7 @@ import java.util.Map;
  * @description 长度单位转制工厂类
  * @date 2020/1/21
  */
-public class LenghtUnitConverterFactory {
+public  class LenghtUnitConverterFactory {
     //长度单位转制器map 保存转制器避免重复new  使用static确保全局唯一
     private final  static Map<LengthUnitEnum,LenghtUnitConverter> lenghtUnitConverterMap=new HashMap<LengthUnitEnum, LenghtUnitConverter>();
 
@@ -23,7 +23,7 @@ public class LenghtUnitConverterFactory {
      * @param originUnit 原先单位
      * @return
      */
-    public LenghtUnitConverter buildLenghtUnitConverter(LengthUnitEnum originUnit){
+    public static  LenghtUnitConverter buildLenghtUnitConverter(LengthUnitEnum originUnit){
         LenghtUnitConverter lenghtUnitConverter=lenghtUnitConverterMap.get(originUnit);
         if(lenghtUnitConverter!=null){
             return lenghtUnitConverter;
