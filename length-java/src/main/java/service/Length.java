@@ -1,4 +1,5 @@
-import constant.LengthUnitEnum;
+package service;
+
 import constant.LengthUnitEnum;
 
 
@@ -22,6 +23,50 @@ public class Length {
 
     public Length as(LengthUnitEnum u) {
         Length len = this;
+        if (this.unit.equals(LengthUnitEnum.FOOT)) {
+            if (u.equals(LengthUnitEnum.YARD)) {
+                len = new Length(this.value / 3, u);
+            } else if (u.equals(LengthUnitEnum.INCH)) {
+                len = new Length(this.value * 12, u);
+            }
+        }
+
+        if (this.unit.equals(LengthUnitEnum.YARD)) {
+            if (u.equals(LengthUnitEnum.INCH)) {
+                len = new Length(this.value * 36, u);
+            } else if (u.equals(LengthUnitEnum.FOOT)){
+                len = new Length(this.value * 3, u);
+            }
+        }
+
+        if (this.unit.equals(LengthUnitEnum.INCH)) {
+            if (u.equals(LengthUnitEnum.FOOT)) {
+                len = new Length(this.value / 12, u);
+            } else if (u.equals(LengthUnitEnum.YARD)) {
+                len = new Length(this.value / 36, u);
+            }
+        }
+
+        return len;
+    }
+
+    public Length temp_as(LengthUnitEnum u) {
+        //以卫语句取代嵌套条件式：根据当前单位和目标单位进行转换
+        Length len = this;
+
+        switch(this.unit){
+            case INCH:
+
+                break;
+            //case YARD:
+                //break;
+            //case FOOT:
+                //break;
+            //default:throw new IllegalArgumentException("原长度单位不存在") ;
+        }
+
+
+
         if (this.unit.equals(LengthUnitEnum.FOOT)) {
             if (u.equals(LengthUnitEnum.YARD)) {
                 len = new Length(this.value / 3, u);
