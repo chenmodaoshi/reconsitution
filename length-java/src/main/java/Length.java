@@ -1,36 +1,37 @@
-import constant.LengthUnit;
+import constant.LengthUnitEnum;
+import constant.LengthUnitEnum;
 
 public class Length {
     private final double value;
-    private final String unit;
+    private final LengthUnitEnum unit;
 
-    public Length(double val, String uinnt) {
+    public Length(double val, LengthUnitEnum uinnt) {
         this.value = val;
         this.unit = uinnt;
     }
 
-    public Length as(String u) {
+    public Length as(LengthUnitEnum u) {
         Length len = this;
-        if (this.unit.equals(LengthUnit.FOOT)) {
-            if (u.equals(LengthUnit.YARD)) {
+        if (this.unit.equals(LengthUnitEnum.FOOT)) {
+            if (u.equals(LengthUnitEnum.YARD)) {
                 len = new Length(this.value / 3, u);
-            } else if (u.equals(LengthUnit.INCH)) {
+            } else if (u.equals(LengthUnitEnum.INCH)) {
                 len = new Length(this.value * 12, u);
             }
         }
 
-        if (this.unit.equals(LengthUnit.YARD)) {
-            if (u.equals(LengthUnit.INCH)) {
+        if (this.unit.equals(LengthUnitEnum.YARD)) {
+            if (u.equals(LengthUnitEnum.INCH)) {
                 len = new Length(this.value * 36, u);
-            } else if (u.equals(LengthUnit.FOOT)){
+            } else if (u.equals(LengthUnitEnum.FOOT)){
                 len = new Length(this.value * 3, u);
             }
         }
 
-        if (this.unit.equals(LengthUnit.INCH)) {
-            if (u.equals(LengthUnit.FOOT)) {
+        if (this.unit.equals(LengthUnitEnum.INCH)) {
+            if (u.equals(LengthUnitEnum.FOOT)) {
                 len = new Length(this.value / 12, u);
-            } else if (u.equals(LengthUnit.YARD)) {
+            } else if (u.equals(LengthUnitEnum.YARD)) {
                 len = new Length(this.value / 36, u);
             }
         }
@@ -42,7 +43,7 @@ public class Length {
         return this.value;
     }
 
-    public String getUinnt() {
+    public LengthUnitEnum getUinnt() {
         return this.unit;
     }
 }
